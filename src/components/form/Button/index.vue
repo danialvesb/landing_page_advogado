@@ -1,10 +1,10 @@
 <template>
-  <div class="card"></div>
+  <div class="button"></div>
 </template>
 
 <script>
 export default {
-
+  name: 'button-ui'
 }
 </script>
 
