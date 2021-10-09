@@ -3,6 +3,7 @@
     <a
       @click="setActiveOption(option.name)"
       :ref="option.name"
+      :href="option.link"
       v-for="(option, index) in options"
       :key="index"
     >
@@ -17,6 +18,36 @@ export default {
   methods: {
     setActiveOption (name) {
       this.active = name
+    },
+    applyScrool (name) {
+      let scrool = 0
+      const defaultSize = 748
+
+      switch (name) {
+        case 'home':
+          scrool = 0
+          break
+        case 'solutions':
+          scrool = defaultSize
+          break
+        case 'plans':
+          scrool = defaultSize * 2
+          break
+        case 'differentials':
+          scrool = defaultSize * 3
+          break
+        case 'abount':
+          scrool = defaultSize * 4
+          break
+        case 'contact':
+          scrool = defaultSize * 5
+          break
+        case 'fac':
+          scrool = defaultSize * 6
+          break
+      }
+
+      window.scroll(0, scrool)
     }
   },
   watch: {
@@ -24,6 +55,8 @@ export default {
       this.$refs[newValue][0].classList.add('a-visited')
 
       if (oldValue) {
+        this.applyScrool(newValue)
+
         this.$refs[oldValue][0].classList.remove('a-visited')
       }
     }
@@ -36,31 +69,38 @@ export default {
     options: [
       {
         name: 'home',
-        label: 'Home'
+        label: 'Home',
+        link: '#home'
       },
       {
         name: 'solutions',
-        label: 'Soluções'
+        label: 'Soluções',
+        link: '#solucoes'
       },
       {
         name: 'plans',
-        label: 'Planos'
+        label: 'Planos',
+        link: '#planos'
       },
       {
         name: 'differentials',
-        label: 'Diferenciais'
+        label: 'Diferenciais',
+        link: '#diferenciais'
       },
       {
         name: 'abount',
-        label: 'Sobre nós'
+        label: 'Sobre nós',
+        link: '#sbre'
       },
       {
         name: 'contact',
-        label: 'Contato'
+        label: 'Contato',
+        link: '#contato'
       },
       {
         name: 'fac',
-        label: 'FAC'
+        label: 'FAC',
+        link: '#fac'
       }
     ]
   })
